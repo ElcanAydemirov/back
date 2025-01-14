@@ -5,6 +5,7 @@ const cors = require('cors');
 const { getAll, getById, deleteById, editWithPut, post } = require("./controllers/productControllers");
 const PORT = 3000;
 const { Schema, model } = mongoose;
+const productRouter = require("./routes/productRoutes")
 
 app.use(cors());
 app.use(express.json());
@@ -18,12 +19,6 @@ mongoose.connect("mongodb+srv://elcansaazmp202:bx1.2005@cluster0.83ybn.mongodb.n
     console.error("Error connecting to MongoDB:", err.message);
 });
 
-app.use('/api/products', getAll);
+app.use('/api/products', productRouter);
 
-app.use('/api/products/:id', getById);
 
-app.use('/api/products/:id', deleteById);
-
-app.use('/api/products/:id', editWithPut);
-
-app.use('/api/products', post);

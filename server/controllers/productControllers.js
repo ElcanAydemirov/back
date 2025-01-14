@@ -52,8 +52,10 @@ const editWithPut = async (req, res) => {
 }
 
 const post = async (req, res) => {
+    console.log(req.body);
     try {
         const newProduct = await ProductModel.create(req.body);
+        newProduct.save()
         res.status(201).json(newProduct);
     } catch (err) {
         res.status(500).json({ message: err.message });
